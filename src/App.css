@@ -1,28 +1,355 @@
-.App {
-  text-align: center;
+/* app parts */
+
+.st-app-header {
+  background-color: #08734E;
+  height: 45px;
+  color: white;
+  display: flex;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.st-app-title {
+  font-size: 1.5em;
+  font-family: 'Roboto-thin', sans-serif;
+  flex: 1;
+  margin-left: 10px;
+  margin-top: 5px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
+.st-app-logo {
+  width: 70px;
+  height: 100%;
+  background-color: #0c5c3e;
+}
+
+.st-app-logo img {
+  height: 80%;
+  padding-top: 6px;
+  margin-left: 10px;
+}
+
+.st-app-main {
+  padding: 1em;
+  background-color: #262626;
+  color: darkgrey;
+  height: 100vh;
+}
+
+.st-level1-wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+/* order action section */
+
+.order-action-wrapper {
+  display: flex;
+  align-content: stretch;
+  align-items: stretch;
+  margin-top: 0.5em;
+  border: 0.15px solid #CCCCCC;
   padding: 20px;
+}
+
+.st-label-div {
+  
+  margin-right: 15px;
+  flex: 0.05;
+  font-size: 1.5em;
+  font-family: 'Roboto-thin', sans-serif;
+  text-align: right;
+}
+
+.st-text-div {
+  margin-left: 5px;
+  margin-right: 5px;
+  font-size: 1.5em;
+  font-family: 'Roboto-thin', sans-serif;
+  text-align: right;
+}
+
+.st-input-div {
+  margin-right: 15px;
+  flex: 0.40;
+}
+
+.st-input-div input {
+  margin-right: 10px;
+  width: 100%;
+  height: 2.75em;
+}
+
+.st-btn-div {
+  height: 2.25em;
+  flex: 0.25;
+}
+
+.st-btn-div button {
+  height: 100%;
+  width: 100%;
+  font-size: 1.25em;
+  font-family: 'Roboto-light', sans-serif;
+  border-radius: 3px;
+  margin-left: 10px;
+  margin-right: 15px;
+  cursor: pointer;
+  min-width: 140px;
+  border: 2px solid #FF8C00;
+  background:transparent;
   color: white;
 }
 
-.App-title {
+.st-btn-div button:hover {
+  background-color: #ffae4c;
+  color: #262626;
+}
+
+/* orders section */
+
+.st-orders-section-wrapper {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.st-section-title {
+  height: 1.75em;
+  margin-top: 5px;
   font-size: 1.5em;
+  font-family: 'Roboto-thin', sans-serif;
+  padding-left: 10px;
+  padding-top: 10px;
+  color: #FFFFFF;
+  border-top: 1px solid #FFFFFF;
 }
 
-.App-intro {
-  font-size: large;
+.st-orders-header-row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: #08734E;
+}
+.st-orders-header-row div {
+  flex: 1;
+  height: 1.75em;
+  margin-top: 5px;
+  font-size: 1.5em;
+  font-family: 'Roboto-thin', sans-serif;
+  padding-left: 10px;
+  color: #FFFFFF;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.st-orders-header-row div:not(:first-child)  {
+  border-left: 1px solid #FFFFFF;
+  height: 90%;
 }
+
+.st-orders {
+  width: 100%;
+  background-color: #FFFFFF;
+  overflow-y: auto;
+}
+
+.orders-row {
+  width: 100%;
+  display: flex;
+  height: 2em;
+}
+
+.orders-row div {
+  flex: 1;
+  color: #262626;
+  margin-top: 5px;
+  padding-left: 10px;
+  height: 100%;
+}
+
+.orders-row div:not(:first-child)  {
+  border-left: 1px solid #262626;
+  height: 90%;
+}
+
+/* orders table action button */
+.st-action-column {
+  padding-right: 10px;
+}
+.st-action-column button {
+  border-radius: 3px;
+  cursor: pointer;
+  border: 2px solid #FF8C00;
+  width: 100%;
+}
+
+.st-action-column button:hover {
+  background-color: #ffae4c;
+}
+
+/* level 2 section */
+
+.st-level2-wrapper {
+  width: 100%;
+  display: flex;
+  margin-top: 20px;
+}
+
+/* bid section */
+
+.st-bid-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 0.5;
+  margin-right: 10px;
+}
+
+.st-bid-header-row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: #08734E;
+}
+
+.st-bid-header-row div {
+  flex: 1;
+  height: 1.75em;
+  margin-top: 5px;
+  font-size: 1.5em;
+  font-family: 'Roboto-thin', sans-serif;
+  padding-left: 10px;
+  color: #FFFFFF;
+}
+
+.st-bid-header-row div:not(:first-child)  {
+  border-left: 1px solid #FFFFFF;
+  height: 90%;
+}
+
+.st-bids {
+  width: 100%;
+  background-color: #FFFFFF;
+  overflow-y: auto;
+}
+
+.st-bid-row {
+  width: 100%;
+  display: flex;
+  height: 1.75em;
+}
+
+.st-bid-row div {
+  flex: 1;
+  color: #262626;
+  margin-top: 5px;
+  padding-left: 10px;
+}
+
+.st-bid-row div:not(:first-child)  {
+  border-left: 1px solid #262626;
+  height: 90%;
+}
+
+/* ask section */
+
+.st-ask-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 0.5;
+  margin-left: 10px;
+}
+.st-ask-header-row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  background-color: #08734E;
+}
+
+.st-ask-header-row div {
+  flex: 1;
+  height: 1.75em;
+  margin-top: 5px;
+  font-size: 1.5em;
+  font-family: 'Roboto-thin', sans-serif;
+  padding-left: 10px;
+  color: #FFFFFF;
+}
+
+.st-ask-header-row div:not(:first-child)  {
+  border-left: 1px solid #FFFFFF;
+  height: 90%;
+}
+
+.st-asks {
+  width: 100%;
+  background-color: #FFFFFF;
+  overflow-y: auto;
+}
+
+.st-ask-row {
+  width: 100%;
+  display: flex;
+  height: 1.75em;
+}
+
+.st-ask-row div {
+  flex: 1;
+  color: #262626;
+  margin-top: 5px;
+  padding-left: 10px;
+}
+
+.st-ask-row div:not(:first-child)  {
+  border-left: 1px solid #262626;
+  height: 90%;
+}
+
+/* ticker section */
+
+.st-ticker-wrapper {
+  display: flex;
+  align-content: stretch;
+  align-items: stretch;
+
+  padding-left: 20px;
+  padding-right: 20px;
+  flex: 1;
+}
+
+.st-ticker-price {
+  display: flex;
+  align-content: stretch;
+  align-items: stretch;
+  flex: 1;
+  margin-right: 30px;
+}
+
+.st-ticker-price-label {
+  margin-right: 15px;
+  margin-top: 1.2em;
+  flex: 0.05;
+  font-size: 1.5em;
+  font-family: 'Roboto-thin', sans-serif;
+  text-align: right;
+  min-width: 140px;
+}
+
+.st-ticker-price-value {
+  border: 0.15px solid #CCCCCC;
+  color: #FFFFFF;
+  padding: 20px;
+  background-color: #730863;
+  font-size: 2.5em;
+  font-family: 'Roboto-thin', sans-serif;
+  text-align: right;
+  width: 100%;
+}
+
+.st-ticker-live {
+  margin-top: 0.75em;
+  padding: 20px;
+  flex: 0.5;
+}
+
+.st-ticker-live input {
+  width: 100%;
+  height: 2.75em;
+ }
+
