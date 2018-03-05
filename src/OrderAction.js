@@ -8,30 +8,40 @@ export default ({
   placeBuyOrder = () => {}
 }) => {
   return (
-    <div>
-      <label className={"qty-label"}>
-        Qty:{" "}
-      </label>
-      <input
-        type="text"
-        id="qty"
-        value={qty}
-        className={"qty-value"}
-        onKeyDown={e =>
-          e.key == "Enter" ? updateQuantity(e.target.value) : null
-        }
-      />
-      <label className={"price-label"}>
-        Price:{" "}
-      </label>
-      <input
-        type="text"
-        id="price"
-        value={price}
-        className={"price-value"}
-        onKeyDown={e => (e.key == "Enter" ? updatePrice(e.target.value) : null)}
-      />
-      <button onClick={() => placeBuyOrder()}>Buy</button>
+    <div className={"order-action-wrapper"}>
+
+      <div className={"st-label-div"}>
+        Quantity:
+      </div>
+      <div className={"st-input-div"}>
+        <input
+          type="text"
+          id="qty"
+          value={qty}
+          className={"input-qty"}
+          onKeyDown={e =>
+            e.key == "Enter" ? updateQuantity(e.target.value) : null
+          }
+        />
+      </div>
+      <div className={"st-text-div"}>
+      @
+    </div>
+      <div className={"st-label-div"}>
+        Price:
+      </div>
+      <div className={"st-input-div"}>
+        <input
+          type="text"
+          id="price"
+          value={price}
+          className={"input-price"}
+          onKeyDown={e => (e.key == "Enter" ? updatePrice(e.target.value) : null)}
+        />
+      </div>
+      <div className={"st-btn-div"}>
+      <button className={"btn-buy"} onClick={() => placeBuyOrder()}>Buy</button>
+    </div>
     </div>
   );
 };
