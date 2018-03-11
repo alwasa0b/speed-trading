@@ -2,26 +2,24 @@ import React from "react";
 import { userConstants, actions, messages } from "./constants";
 import { connect } from "react-redux";
 
-const Orders = ({ orders = [], cancelOrder }) => {
+const Orders = ({ positions = [], sellOrder }) => {
   return (
     <div className={"st-orders-section-wrapper"}>
-      <div className={"st-section-title"}>Orders:</div>
+      <div className={"st-section-title"}>Positions:</div>
       <div className={"st-orders-header-row"}>
         <div className={"qty-column-header"}>Symbol</div>
         <div className={"qty-column-header"}>Qty</div>
-        <div className={"price-column-header"}>Price</div>
-        <div className={"status-column-header"}>Status</div>
+        <div className={"price-column-header"}>Average Price</div>
         <div className={"action-column-header"}>Action</div>
       </div>
       <div className={"st-orders"}>
-        {orders.map((order, i) => (
+        {positions.map((position, i) => (
           <div className={"orders-row"} key={i}>
-            <div className={"qty-column"}>{order.symbol}</div>
-            <div className={"qty-column"}>{order.quantity}</div>
-            <div className={"price-column"}>{order.price}</div>
-            <div className={"status-column"}>{order.state}</div>
+            <div className={"qty-column"}>{position.symbol}</div>
+            <div className={"qty-column"}>{position.quantity}</div>
+            <div className={"price-column"}>{position.average_buy_price}</div>
             <div className={"st-action-column"}>
-              <button onClick={() => cancelOrder(order)} disabled={order.state==="cancelled"}>Cancel</button>
+              <button onClick={() => sellOrder(position)}>Sell All</button>
             </div>
           </div>
         ))}
@@ -32,14 +30,14 @@ const Orders = ({ orders = [], cancelOrder }) => {
 
 const mapStateToProps = ({ messagesReducer }) => {
   return {
-    orders: messagesReducer.orders
+    positions: messagesReducer.positions
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    cancelOrder: order => {
-      dispatch({ type: actions.CANCEL_REQUEST, data: order });
+    sellOrder: position => {
+      dispatch({ type: actions.SELL_REQUEST, data: position });
     }
   };
 };

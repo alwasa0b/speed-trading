@@ -1,15 +1,15 @@
 /* app parts */
 
 .st-app-header {
-  background-color: #08734E;
+  background-color: #08734e;
   height: 45px;
   color: white;
   display: flex;
 }
 
 .st-app-title {
-  font-size: 1.5em;
-  font-family: 'Roboto-thin', sans-serif;
+  font-size: 1em;
+  font-family: "Roboto-thin", sans-serif;
   flex: 1;
   margin-left: 10px;
   margin-top: 5px;
@@ -42,40 +42,42 @@
 /* order action section */
 
 .order-action-wrapper {
+}
+
+.row {
   display: flex;
+  display: row;
   align-content: stretch;
   align-items: stretch;
   margin-top: 0.5em;
-  border: 0.15px solid #CCCCCC;
+  border: 0.15px solid #cccccc;
   padding: 20px;
 }
 
 .st-label-div {
-  
   margin-right: 15px;
   flex: 0.05;
-  font-size: 1.5em;
-  font-family: 'Roboto-thin', sans-serif;
+  font-size: 1em;
+  font-family: "Roboto-thin", sans-serif;
   text-align: right;
 }
 
 .st-text-div {
   margin-left: 5px;
   margin-right: 5px;
-  font-size: 1.5em;
-  font-family: 'Roboto-thin', sans-serif;
+  font-size: 1em;
+  font-family: "Roboto-thin", sans-serif;
   text-align: right;
 }
 
 .st-input-div {
-  margin-right: 15px;
-  flex: 0.40;
+  margin-right: 10px;
 }
 
 .st-input-div input {
   margin-right: 10px;
   width: 100%;
-  height: 2.75em;
+  height: 1.75em;
 }
 
 .st-btn-div {
@@ -86,15 +88,15 @@
 .st-btn-div button {
   height: 100%;
   width: 100%;
-  font-size: 1.25em;
-  font-family: 'Roboto-light', sans-serif;
+  font-size: 1em;
+  font-family: "Roboto-light", sans-serif;
   border-radius: 3px;
   margin-left: 10px;
   margin-right: 15px;
   cursor: pointer;
   min-width: 140px;
-  border: 2px solid #FF8C00;
-  background:transparent;
+  border: 2px solid #ff8c00;
+  background: transparent;
   color: white;
 }
 
@@ -113,38 +115,38 @@
 .st-section-title {
   height: 1.75em;
   margin-top: 5px;
-  font-size: 1.5em;
-  font-family: 'Roboto-thin', sans-serif;
+  font-size: 1em;
+  font-family: "Roboto-thin", sans-serif;
   padding-left: 10px;
   padding-top: 10px;
-  color: #FFFFFF;
-  border-top: 1px solid #FFFFFF;
+  color: #ffffff;
+  border-top: 1px solid #ffffff;
 }
 
 .st-orders-header-row {
   display: flex;
   flex-direction: row;
   width: 100%;
-  background-color: #08734E;
+  background-color: #08734e;
 }
 .st-orders-header-row div {
   flex: 1;
   height: 1.75em;
   margin-top: 5px;
-  font-size: 1.5em;
-  font-family: 'Roboto-thin', sans-serif;
+  font-size: 1em;
+  font-family: "Roboto-thin", sans-serif;
   padding-left: 10px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
-.st-orders-header-row div:not(:first-child)  {
-  border-left: 1px solid #FFFFFF;
+.st-orders-header-row div:not(:first-child) {
+  border-left: 1px solid #ffffff;
   height: 90%;
 }
 
 .st-orders {
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   overflow-y: auto;
 }
 
@@ -162,7 +164,7 @@
   height: 100%;
 }
 
-.orders-row div:not(:first-child)  {
+.orders-row div:not(:first-child) {
   border-left: 1px solid #262626;
   height: 90%;
 }
@@ -171,15 +173,26 @@
 .st-action-column {
   padding-right: 10px;
 }
+
+
+
 .st-action-column button {
   border-radius: 3px;
   cursor: pointer;
-  border: 2px solid #FF8C00;
+  border: 2px solid #ff8c00;
   width: 100%;
 }
 
 .st-action-column button:hover {
   background-color: #ffae4c;
+}
+
+.st-action-column button:disabled {
+  border-radius: 3px;
+  cursor: default;
+  border: 2px solid gray;
+  background-color: gray;
+  width: 100%;
 }
 
 /* level 2 section */
@@ -204,7 +217,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  background-color: #08734E;
+  background-color: #08734e;
 }
 
 .st-bid-header-row div {
@@ -212,19 +225,19 @@
   height: 1.75em;
   margin-top: 5px;
   font-size: 1.5em;
-  font-family: 'Roboto-thin', sans-serif;
+  font-family: "Roboto-thin", sans-serif;
   padding-left: 10px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
-.st-bid-header-row div:not(:first-child)  {
-  border-left: 1px solid #FFFFFF;
+.st-bid-header-row div:not(:first-child) {
+  border-left: 1px solid #ffffff;
   height: 90%;
 }
 
 .st-bids {
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   overflow-y: auto;
 }
 
@@ -241,7 +254,7 @@
   padding-left: 10px;
 }
 
-.st-bid-row div:not(:first-child)  {
+.st-bid-row div:not(:first-child) {
   border-left: 1px solid #262626;
   height: 90%;
 }
@@ -259,7 +272,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  background-color: #08734E;
+  background-color: #08734e;
 }
 
 .st-ask-header-row div {
@@ -267,19 +280,19 @@
   height: 1.75em;
   margin-top: 5px;
   font-size: 1.5em;
-  font-family: 'Roboto-thin', sans-serif;
+  font-family: "Roboto-thin", sans-serif;
   padding-left: 10px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
-.st-ask-header-row div:not(:first-child)  {
-  border-left: 1px solid #FFFFFF;
+.st-ask-header-row div:not(:first-child) {
+  border-left: 1px solid #ffffff;
   height: 90%;
 }
 
 .st-asks {
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   overflow-y: auto;
 }
 
@@ -296,7 +309,7 @@
   padding-left: 10px;
 }
 
-.st-ask-row div:not(:first-child)  {
+.st-ask-row div:not(:first-child) {
   border-left: 1px solid #262626;
   height: 90%;
 }
@@ -326,18 +339,18 @@
   margin-top: 1.2em;
   flex: 0.05;
   font-size: 1.5em;
-  font-family: 'Roboto-thin', sans-serif;
+  font-family: "Roboto-thin", sans-serif;
   text-align: right;
   min-width: 140px;
 }
 
 .st-ticker-price-value {
-  border: 0.15px solid #CCCCCC;
-  color: #FFFFFF;
+  border: 0.15px solid #cccccc;
+  color: #ffffff;
   padding: 20px;
   background-color: #730863;
   font-size: 2.5em;
-  font-family: 'Roboto-thin', sans-serif;
+  font-family: "Roboto-thin", sans-serif;
   text-align: right;
   width: 100%;
 }
@@ -350,6 +363,5 @@
 
 .st-ticker-live input {
   width: 100%;
-  height: 2.75em;
- }
-
+  height: 1.75em;
+}
