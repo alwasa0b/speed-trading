@@ -7,13 +7,22 @@ class Login extends Component {
   render() {
     let { username, password } = this;
     return (
-      <div>
-        <input type={"text"} ref={node => (this.username = node)}/>
-        <input type={"text"} ref={node => (this.password = node)}/>
-        <button onClick={() => this.props.login({ username: this.username.value, password: this.password.value })}>
+      <form onSubmit={e => e.preventDefault()}>
+        <label>Username: </label>
+        <input type={"text"} ref={node => (this.username = node)} />
+        <label>Password: </label>
+        <input type={"password"} ref={node => (this.password = node)} />
+        <button
+          onClick={() =>
+            this.props.login({
+              username: this.username.value,
+              password: this.password.value
+            })
+          }
+        >
           Login
         </button>
-      </div>
+      </form>
     );
   }
 }

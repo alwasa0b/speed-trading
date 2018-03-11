@@ -3,7 +3,12 @@ import { userConstants, actions, messages } from "./constants";
 import { connect } from "react-redux";
 
 class OrderActions extends Component {
-  state = { placeStopLoss: false, placeSellOrder: false };
+  componentDidMount() {
+    this.props.dispatch({ type: messages.UPDATE_POSITIONS });
+    this.props.dispatch({ type: messages.UPDATE_ORDERS });
+  }
+
+  state = { placeStopLoss: false, placeSellOrder: false, quantity: 0 };
   render() {
     let { price = {}, buyOrder } = this.props;
 
@@ -17,9 +22,9 @@ class OrderActions extends Component {
               id="qty"
               ref={node => (this.quantity = node)}
               className={"input-qty"}
-              // onKeyDown={e =>
-              //   e.key == "Enter" ? updateQuantity(e.target.value) : null
-              // }
+              onChange={({ target }) =>
+                this.setState({ quantity: target.value })
+              }
             />
           </div>
           <div className={"st-text-div"}>@</div>
@@ -30,12 +35,12 @@ class OrderActions extends Component {
               id="price"
               value={price.price}
               className={"input-price"}
-              //onKeyDown={e => (e.key == "Enter" ? updatePrice(e.target.value) : null)}
             />
           </div>
           <div className={"st-btn-div"}>
             <button
               className={"btn-buy"}
+              disabled={this.state.quantity < 1 || !price.price}
               onClick={() =>
                 buyOrder({
                   instrument: price.instrument,
@@ -102,7 +107,8 @@ const mapDispatchToProps = dispatch => {
   return {
     buyOrder: instrument => {
       dispatch({ type: actions.BUY_REQUEST, data: instrument });
-    }
+    },
+    dispatch
   };
 };
 

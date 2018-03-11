@@ -1,6 +1,19 @@
 import { delay } from "redux-saga";
 import { put, takeEvery, all, call } from "redux-saga/effects";
 import { userConstants, actions } from "./constants";
+import { authentication } from "./reducers";
+
+let callLogin = ({ username, password }) =>
+  fetch("http://localhost:3001/login", {
+    mode: "cors",
+    method: "POST",
+    body: JSON.stringify({ username, password }),
+    datatype: "json",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      "Content-Security-Policy": "default-src self"
+    })
+  });
 
 let callCancel = ({ data }) =>
   fetch("http://localhost:3001/cancel_orders", {
@@ -52,10 +65,6 @@ function* cancelOrderRequest(action) {
   yield call(callCancel, action);
 }
 
-function* buyOrder() {
-  //yield takeEvery(userConstants.LOGIN_REQUEST, logging_in);
-}
-
 function* sellOrderRequest(action) {
   yield call(callSell, action);
 }
@@ -64,6 +73,11 @@ function* buyOrderRequest(action) {
   yield call(callBuy, action);
 }
 
+function* loginRequest(action) {
+  console.log(action);
+  yield call(callLogin, action);
+  yield put({ type: userConstants.LOGIN_SUCCESS });
+}
 function* cancelOrder() {
   yield takeEvery(actions.CANCEL_REQUEST, cancelOrderRequest);
 }
@@ -76,6 +90,10 @@ function* buyOrder() {
   yield takeEvery(actions.BUY_REQUEST, buyOrderRequest);
 }
 
+function* login() {
+  yield takeEvery(userConstants.LOGIN_REQUEST, loginRequest);
+}
+
 export default function* main() {
-  yield all([cancelOrder(), sellOrder(), buyOrder()]);
+  yield all([cancelOrder(), sellOrder(), buyOrder(), login()]);
 }

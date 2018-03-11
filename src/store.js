@@ -19,7 +19,6 @@ const store = createStore(
 
 sagaMiddleware.run(main);
 
-store.dispatch({ type: messages.UPDATE_POSITIONS });
-store.dispatch({ type: messages.UPDATE_ORDERS });
+
 
 export default store;

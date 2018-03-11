@@ -77,11 +77,15 @@
 .st-input-div input {
   margin-right: 10px;
   width: 100%;
-  height: 1.75em;
+  height: 1.25em;
+}
+
+.st-input-div input:disabled {
+  background-color: gray;
 }
 
 .st-btn-div {
-  height: 2.25em;
+  height: 1.5em;
   flex: 0.25;
 }
 
@@ -103,6 +107,20 @@
 .st-btn-div button:hover {
   background-color: #ffae4c;
   color: #262626;
+}
+
+.st-btn-div button:disabled {
+  height: 100%;
+  width: 100%;
+  font-size: 1em;
+  font-family: "Roboto-light", sans-serif;
+  border-radius: 3px;
+  margin-left: 10px;
+  margin-right: 15px;
+  cursor: default;
+  min-width: 140px;
+  border: 2px solid gray;
+  background: gray;
 }
 
 /* orders section */
@@ -173,8 +191,6 @@
 .st-action-column {
   padding-right: 10px;
 }
-
-
 
 .st-action-column button {
   border-radius: 3px;
@@ -363,5 +379,5 @@
 
 .st-ticker-live input {
   width: 100%;
-  height: 1.75em;
+  height: 1.25em;
 }
