@@ -31,10 +31,21 @@ class OrderActions extends Component {
           <div className={"st-label-div"}>Price:</div>
           <div className={"st-input-div"}>
             <input
+              type="checkbox"
+              onChange={() =>
+                this.setState({
+                  customPrice: !this.state.customPrice
+                })
+              }
+            />
+          </div>
+          <div className={"st-input-div"}>
+            <input
               type="text"
               id="price"
-              value={price.price}
+              disabled={!this.state.customPrice}
               className={"input-price"}
+              ref={node => (this.price = node)}
             />
           </div>
           <div className={"st-btn-div"}>
@@ -49,7 +60,9 @@ class OrderActions extends Component {
                   placeSellOrder: this.state.placeSellOrder,
                   placestopLoss: this.state.placeStopLoss,
                   sellPrice: this.sellOrderPrice.value,
-                  stopLossPrice: this.stopLossPrice.value
+                  stopLossPrice: this.stopLossPrice.value,
+                  customPrice: this.state.customPrice,
+                  bid_price: this.price.value
                 })
               }
             >
@@ -63,7 +76,9 @@ class OrderActions extends Component {
             <input
               type="checkbox"
               onChange={({ target }) =>
-                this.setState({ placeStopLoss: !this.state.placeStopLoss })
+                this.setState({
+                  placeStopLoss: !this.state.placeStopLoss
+                })
               }
             />
           </div>
@@ -80,7 +95,9 @@ class OrderActions extends Component {
             <input
               type="checkbox"
               onChange={({ target }) =>
-                this.setState({ placeSellOrder: !this.state.placeSellOrder })
+                this.setState({
+                  placeSellOrder: !this.state.placeSellOrder
+                })
               }
             />
           </div>

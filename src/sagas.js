@@ -43,7 +43,6 @@ let callSell = ({ data }) =>
   });
 
 let callBuy = ({ data }) => {
-  console.log(data);
   return fetch("http://localhost:3001/place_buy_order", {
     mode: "cors",
     method: "POST",
