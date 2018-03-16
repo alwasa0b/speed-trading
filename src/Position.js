@@ -1,6 +1,7 @@
 import React from "react";
 import { userConstants, actions, messages } from "./constants";
 import { connect } from "react-redux";
+import SellAction from "./SellAction";
 
 const Orders = ({ positions = [], sellOrder }) => {
   return (
@@ -19,7 +20,7 @@ const Orders = ({ positions = [], sellOrder }) => {
             <div className={"qty-column"}>{position.quantity}</div>
             <div className={"price-column"}>{position.average_buy_price}</div>
             <div className={"st-action-column"}>
-              <button onClick={() => sellOrder(position)}>Sell All</button>
+              <SellAction position={position} />
             </div>
           </div>
         ))}

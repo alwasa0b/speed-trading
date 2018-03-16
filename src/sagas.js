@@ -33,7 +33,8 @@ let callSell = ({ data }) =>
     method: "POST",
     body: JSON.stringify({
       instrument: data.instrument,
-      quantity: data.quantity
+      quantity: data.quantity,
+      price: data.price
     }),
     datatype: "json",
     headers: new Headers({

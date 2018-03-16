@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import OrderAction from "./OrderAction";
 import Ticker from "./Ticker";
-import Postion from "./Postion";
+import Position from "./Position";
 import Orders from "./Orders";
 import Login from "./Login";
 import mainLogo from "./images/speed_trader_logo.png";
@@ -25,9 +25,9 @@ const App = ({ loggingIn }) => {
               <OrderAction />
               <Ticker />
             </div>
-            <Postion />
+            <Position />
             <Orders />
-          </div>{" "}
+          </div>
         </div>
       ) : (
         <Login />
