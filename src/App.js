@@ -9,10 +9,10 @@ import mainLogo from "./images/speed_trader_logo.png";
 import { userConstants, actions, messages } from "./constants";
 import { connect } from "react-redux";
 
-const App = ({ loggingIn }) => {
+const App = ({ loggedIn }) => {
   return (
     <div>
-      {loggingIn ? (
+      {loggedIn ? (
         <div>
           <div className={"st-app-header"}>
             <div className={"st-app-logo"}>
@@ -38,7 +38,7 @@ const App = ({ loggingIn }) => {
 
 const mapStateToProps = ({ authentication }) => {
   return {
-    loggingIn: authentication.loggingIn
+    loggedIn: authentication.loggedIn
   };
 };
 

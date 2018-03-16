@@ -74,7 +74,6 @@ function* buyOrderRequest(action) {
 }
 
 function* loginRequest(action) {
-  console.log(action);
   yield call(callLogin, action);
   yield put({ type: userConstants.LOGIN_SUCCESS });
 }
