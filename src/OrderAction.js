@@ -58,7 +58,7 @@ class OrderActions extends Component {
                   quantity: this.quantity.value,
                   symbol: price.symbol,
                   placeSellOrder: this.state.placeSellOrder,
-                  placestopLoss: this.state.placeStopLoss,
+                  placeStopLoss: this.state.placeStopLoss,
                   sellPrice: this.sellOrderPrice.value,
                   stopLossPrice: this.stopLossPrice.value,
                   customPrice: this.state.customPrice,
