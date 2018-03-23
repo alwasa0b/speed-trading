@@ -51,7 +51,7 @@ class SellAction extends PureComponent {
           onChange={({ target }) => this.setState({ price: target.value })}
         />
         <button
-          disabled={this.state.customPrice && !this.state.price}
+          disabled={this.state.type !== "bid" && !this.state.price}
           onClick={this.handleOrderPlaced}
         >
           Sell All

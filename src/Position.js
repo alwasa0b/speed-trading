@@ -24,7 +24,7 @@ const Orders = ({ positions = [], sellOrder }) => {
               {(
                 (position.cur_price - position.average_buy_price) /
                 position.average_buy_price
-              ).toFixed(3)}%
+              ).toFixed(3)*100}%
             </div>
             <div className={"st-action-column"}>
               <SellAction position={position} />
