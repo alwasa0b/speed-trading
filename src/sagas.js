@@ -61,12 +61,33 @@ let callBuy = ({ data }) => {
   });
 };
 
+let stopLoss = ({ data }) =>
+  fetch("http://localhost:3001/place_stop_loss_order", {
+    mode: "cors",
+    method: "POST",
+    body: JSON.stringify({
+      instrument: data.instrument,
+      quantity: data.quantity,
+      symbol: data.symbol,
+      stop_price: data.stop_price
+    }),
+    datatype: "json",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      "Content-Security-Policy": "default-src self"
+    })
+  });
+
 function* cancelOrderRequest(action) {
   yield call(callCancel, action);
 }
 
 function* sellOrderRequest(action) {
   yield call(callSell, action);
+}
+
+function* stopLossOrderRequest(action) {
+  yield call(stopLoss, action);
 }
 
 function* buyOrderRequest(action) {
@@ -85,6 +106,10 @@ function* sellOrder() {
   yield takeEvery(actions.SELL_REQUEST, sellOrderRequest);
 }
 
+function* stopLossOrder() {
+  yield takeEvery(actions.STOP_LOSS_REQUEST, stopLossOrderRequest);
+}
+
 function* buyOrder() {
   yield takeEvery(actions.BUY_REQUEST, buyOrderRequest);
 }
@@ -94,5 +119,5 @@ function* login() {
 }
 
 export default function* main() {
-  yield all([cancelOrder(), sellOrder(), buyOrder(), login()]);
+  yield all([cancelOrder(), sellOrder(), buyOrder(), login(), stopLossOrder()]);
 }

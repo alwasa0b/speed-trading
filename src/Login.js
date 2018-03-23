@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { login } from "./actions";
 
-class Login extends Component {
+class Login extends PureComponent {
   static defaultProps = { login: () => {} };
   render() {
     let { username, password } = this;

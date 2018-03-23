@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { userConstants, actions, messages } from "./constants";
 import { connect } from "react-redux";
 
-class OrderActions extends Component {
+class OrderActions extends PureComponent {
   componentDidMount() {
     this.props.dispatch({ type: messages.UPDATE_POSITIONS });
     this.props.dispatch({ type: messages.UPDATE_ORDERS });

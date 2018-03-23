@@ -8,7 +8,8 @@ export const userConstants = {
 export const actions = {
   BUY_REQUEST: "BUY_REQUEST",
   SELL_REQUEST: "SELL_REQUEST",
-  CANCEL_REQUEST: "CANCEL_REQUEST"
+  CANCEL_REQUEST: "CANCEL_REQUEST",
+  STOP_LOSS_REQUEST: "STOP_LOSS_REQUEST"
 };
 
 export const messages = {
