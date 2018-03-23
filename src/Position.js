@@ -3,6 +3,12 @@ import { userConstants, actions, messages } from "./constants";
 import { connect } from "react-redux";
 import SellAction from "./SellAction";
 
+const gain = position =>
+  (
+    (position.cur_price - position.average_buy_price) /
+    position.average_buy_price
+  ).toFixed(5);
+
 const Orders = ({ positions = [], sellOrder }) => {
   return (
     <div className={"st-orders-section-wrapper"}>
@@ -11,7 +17,8 @@ const Orders = ({ positions = [], sellOrder }) => {
         <div className={"symbol-column-header"}>Symbol</div>
         <div className={"qty-column-header"}>Qty</div>
         <div className={"price-column-header"}>Average Price</div>
-        <div className={"gain-column-header"}>Gain</div>
+        <div className={"gain-column-header"}>Gain %</div>
+        <div className={"gain-dollar-column-header"}>Gain $</div>
         <div className={"action-column-header"}>Action</div>
       </div>
       <div className={"st-orders"}>
@@ -20,11 +27,9 @@ const Orders = ({ positions = [], sellOrder }) => {
             <div className={"symbol-column"}>{position.symbol}</div>
             <div className={"qty-column"}>{position.quantity}</div>
             <div className={"price-column"}>{position.average_buy_price}</div>
-            <div className={"gain-column"}>
-              {(
-                (position.cur_price - position.average_buy_price) /
-                position.average_buy_price
-              ).toFixed(5)*100}%
+            <div className={"gain-column"}>{(gain(position) * 100)}%</div>
+            <div className={"gain-dollar-column"}>
+              {(gain(position) * position.average_buy_price * position.quantity).toFixed(3)}
             </div>
             <div className={"st-action-column"}>
               <SellAction position={position} />

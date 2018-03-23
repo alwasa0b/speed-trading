@@ -198,7 +198,11 @@
 }
 
 .gain-column-header {
-  width: 25%;
+  width: 10%;
+}
+
+.gain-dollar-column-header {
+  width: 10%;
 }
 
 .status-column-header {
@@ -222,7 +226,11 @@
 }
 
 .gain-column {
-  width: 25%;
+  width: 10%;
+}
+
+.gain-dollar-column {
+  width: 10%;
 }
 
 .status-column {
