@@ -7,7 +7,7 @@ const gain = position =>
   (
     (position.cur_price - position.average_buy_price) /
     position.average_buy_price
-  ).toFixed(5);
+  );
 
 const Orders = ({ positions = [], sellOrder }) => {
   return (
@@ -27,7 +27,7 @@ const Orders = ({ positions = [], sellOrder }) => {
             <div className={"symbol-column"}>{position.symbol}</div>
             <div className={"qty-column"}>{position.quantity}</div>
             <div className={"price-column"}>{position.average_buy_price}</div>
-            <div className={"gain-column"}>{(gain(position) * 100)}%</div>
+            <div className={"gain-column"}>{(gain(position) * 100).toFixed(3)}%</div>
             <div className={"gain-dollar-column"}>
               {(gain(position) * position.average_buy_price * position.quantity).toFixed(3)}
             </div>
