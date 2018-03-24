@@ -11,7 +11,7 @@ export const place_sell_order = ({ sell_order }) => async (
   getState
 ) => {
   const { instrument, quantity, symbol } = sell_order;
-  const buy_order_response = await service.place_sell_order({
+  const sell_order_response = await service.place_sell_order({
     sell_order: {
       ...getState().sell_order,
       quantity,
@@ -19,8 +19,7 @@ export const place_sell_order = ({ sell_order }) => async (
       symbol
     }
   });
-
-  const sell_order_response = await service.place_sell_order({ sell_order });
+  
   dispatch(sell_order_success(sell_order_response));
 };
 

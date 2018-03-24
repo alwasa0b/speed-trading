@@ -6,9 +6,7 @@ import {
 } from "./constants/login";
 
 import {
-  UPDATE_INSTRUMENT,
   UPDATE_QUANTITY,
-  UPDATE_SYMBOL,
   UPDATE_SELL_ORDER_TYPE,
   UPDATE_BUY_ORDER_TYPE,
   UPDATE_BUY_PRICE,

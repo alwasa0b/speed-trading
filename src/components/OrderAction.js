@@ -9,7 +9,16 @@ export default class OrderActions extends PureComponent {
   }
 
   render() {
-    let { price = {}, buy_order } = this.props;
+    let {
+      price = {},
+      buy_order_type,
+      place_buy_order,
+      quantity,
+      buy_price,
+      update_quantity,
+      update_buy_order_type,
+      update_buy_price
+    } = this.props;
 
     return (
       <div className={"order-action-wrapper"}>
@@ -24,7 +33,7 @@ export default class OrderActions extends PureComponent {
               id="qty"
               className={"input-qty"}
               onChange={({ target }) =>
-                this.props.update_quantity({ quantity: target.value })
+                update_quantity({ quantity: target.value })
               }
             />
           </div>
@@ -32,9 +41,9 @@ export default class OrderActions extends PureComponent {
           <div className={"st-label-div"}>Price:</div>
           <div className={"st-input-div"}>
             <select
-              value={this.props.buy_order_type}
+              value={buy_order_type}
               onChange={({ target }) =>
-                this.props.update_buy_order_type({
+                update_buy_order_type({
                   buy_order_type: target.value
                 })
               }
@@ -47,10 +56,10 @@ export default class OrderActions extends PureComponent {
             <input
               type="text"
               id="price"
-              disabled={this.props.buy_order_type != "limit"}
+              disabled={buy_order_type !== "limit"}
               className={"input-price"}
               onChange={({ target }) =>
-                this.props.update_buy_price({
+                update_buy_price({
                   buy_price: target.value
                 })
               }
@@ -60,12 +69,11 @@ export default class OrderActions extends PureComponent {
             <button
               className={"btn-buy"}
               disabled={
-                this.props.quantity < 1 ||
-                (this.props.buy_order_type === "limit" &&
-                  !this.props.buy_price) ||
+                quantity < 1 ||
+                (buy_order_type === "limit" && !buy_price) ||
                 !price.price
               }
-              onClick={this.props.place_buy_order}
+              onClick={place_buy_order}
             >
               Buy
             </button>

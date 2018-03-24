@@ -8,7 +8,9 @@ export default ({ price = {}, update_price }) => {
           <input
             id="ticker"
             onKeyDown={e =>
-              e.key == "Enter" ? update_price({ symbol: e.target.value }) : null
+              e.key === "Enter"
+                ? update_price({ symbol: e.target.value })
+                : null
             }
           />
         </div>
