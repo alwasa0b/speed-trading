@@ -1,9 +1,10 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import { login } from "./actions";
+import { bindActionCreators } from "redux";
+import * as login from "./actions/login";
 
 class Login extends PureComponent {
-  static defaultProps = { login: () => {} };
+  static defaultProps = { login: () => { } };
   render() {
     let { username, password } = this;
     return (
@@ -15,8 +16,10 @@ class Login extends PureComponent {
         <button
           onClick={() =>
             this.props.login({
-              username: this.username.value,
-              password: this.password.value
+              login: {
+                username: this.username.value,
+                password: this.password.value
+              }
             })
           }
         >
@@ -30,12 +33,9 @@ class Login extends PureComponent {
 const mapStateToProps = state => {
   return {};
 };
-const mapDispatchToProps = dispatch => {
-  return {
-    login: ({ username, password }) => {
-      dispatch(login({ username, password }));
-    }
-  };
-};
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(login, dispatch);
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,8 +1,10 @@
 import React from "react";
-import { userConstants, actions, messages } from "./constants";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import NumberParser from "./NumberParser";
+import * as cancel from "./actions/cancel.js";
 
-const Orders = ({ orders = [], cancelOrder }) => {
+const Orders = ({ orders = [], place_cancel_order }) => {
   return (
     <div className={"st-orders-section-wrapper"}>
       <div className={"st-section-title"}>Orders:</div>
@@ -18,14 +20,22 @@ const Orders = ({ orders = [], cancelOrder }) => {
         {orders.map((order, i) => (
           <div className={"orders-row"} key={i}>
             <div className={"symbol-column"}>{order.symbol}</div>
-            <div className={"qty-column"}>{order.quantity}</div>
-            <div className={"price-column"}>{order.price}</div>
-            <div className={"stop-price-column"}>{order.stop_price}</div>
+            <div className={"qty-column"}>
+              <NumberParser value={order.quantity} fix={0} />
+            </div>
+            <div className={"price-column"}>
+              <NumberParser value={order.average_price} />
+            </div>
+            <div className={"stop-price-column"}>
+              <NumberParser value={order.stop_price} />
+            </div>
             <div className={"status-column"}>{order.state}</div>
             <div className={"st-action-column"}>
               <button
-                onClick={() => cancelOrder(order)}
-                disabled={order.state === "cancelled"}
+                onClick={() => place_cancel_order({ cancel_order: order })}
+                disabled={
+                  order.state === "cancelled" || order.state === "filled"
+                }
               >
                 Cancel
               </button>
@@ -37,18 +47,10 @@ const Orders = ({ orders = [], cancelOrder }) => {
   );
 };
 
-const mapStateToProps = ({ messagesReducer }) => {
-  return {
-    orders: messagesReducer.orders
-  };
-};
+const mapStateToProps = ({ messages }) => ({
+  orders: messages.orders
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    cancelOrder: order => {
-      dispatch({ type: actions.CANCEL_REQUEST, data: order });
-    }
-  };
-};
+const mapDispatchToProps = dispatch => bindActionCreators(cancel, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Orders);

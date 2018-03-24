@@ -1,12 +1,11 @@
 import React from "react";
-import "./App.css";
+import "./styles/App.css";
 import OrderAction from "./OrderAction";
-import Ticker from "./Ticker";
+
 import Position from "./Position";
 import Orders from "./Orders";
 import Login from "./Login";
 import mainLogo from "./images/speed_trader_logo.png";
-import { userConstants, actions, messages } from "./constants";
 import { connect } from "react-redux";
 
 const App = ({ loggedIn }) => {
@@ -23,7 +22,6 @@ const App = ({ loggedIn }) => {
           <div className={"st-app-main"}>
             <div className={"st-level1-wrapper"}>
               <OrderAction />
-              <Ticker />
             </div>
             <Position />
             <Orders />
@@ -42,12 +40,4 @@ const mapStateToProps = ({ authentication }) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    updatePrice: value => {
-      dispatch({ type: "SERVER/UPDATE_PRICE", data: value });
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, null)(App);

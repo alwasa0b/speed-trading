@@ -1,4 +1,30 @@
-import { userConstants, actions, messages } from "./constants";
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  LOGOUT_SUCCESS
+} from "./constants/login";
+
+import {
+  UPDATE_INSTRUMENT,
+  UPDATE_QUANTITY,
+  UPDATE_SYMBOL,
+  UPDATE_SELL_ORDER_TYPE,
+  UPDATE_BUY_ORDER_TYPE,
+  UPDATE_BUY_PRICE,
+  UPDATE_SELL_PRICE
+} from "./constants/buy";
+
+import {
+  UPDATE_SELL_ORDER_TYPE_TYPE,
+  UPDATE_SELL_ORDER_PRICE_PRICE
+} from "./constants/sell";
+
+import {
+  POSITIONS_UPDATED,
+  ORDERS_UPDATED,
+  PRICE_UPDATED
+} from "./constants/messages";
 import { combineReducers } from "redux";
 
 let user = JSON.parse(localStorage.getItem("user"));
@@ -6,39 +32,75 @@ const initialState = user ? { loggedIn: false, user } : {};
 
 export function authentication(state = initialState, action) {
   switch (action.type) {
-    case userConstants.LOGIN_REQUEST:
+    case LOGIN_REQUEST:
       return {
         loggingIn: true,
         user: action.user
       };
-    case userConstants.LOGIN_SUCCESS:
+    case LOGIN_SUCCESS:
       return {
         loggedIn: true
       };
-    case userConstants.LOGIN_FAILURE:
+    case LOGIN_FAILURE:
       return {};
-    case userConstants.LOGOUT:
+    case LOGOUT_SUCCESS:
       return {};
     default:
       return state;
   }
 }
 
-function messagesReducer(state = {}, action) {
+function messages(state = {}, action) {
   switch (action.type) {
-    case messages.POSITIONS:
+    case POSITIONS_UPDATED:
       return { ...state, positions: action.data };
-    case messages.ORDERS:
+    case ORDERS_UPDATED:
       return { ...state, orders: action.data };
-    case messages.PRICE:
+    case PRICE_UPDATED:
       return { ...state, price: action.data };
     default:
       return state;
   }
 }
 
-function actionsReducer(state = {}, action) {
+function buy_order(
+  state = {
+    quantity: "",
+    sell_order_type: "none",
+    sell_price: "",
+    buy_order_type: "bid",
+    buy_price: ""
+  },
+  action
+) {
   switch (action.type) {
+    case UPDATE_QUANTITY:
+      return { ...state, quantity: action.quantity };
+    case UPDATE_SELL_ORDER_TYPE:
+      return { ...state, sell_order_type: action.sell_order_type };
+    case UPDATE_BUY_ORDER_TYPE:
+      return { ...state, buy_order_type: action.buy_order_type };
+    case UPDATE_BUY_PRICE:
+      return { ...state, buy_price: action.buy_price };
+    case UPDATE_SELL_PRICE:
+      return { ...state, sell_price: action.sell_price };
+    default:
+      return state;
+  }
+}
+
+function sell_order(
+  state = {
+    order_type: "bid",
+    price: 0
+  },
+  action
+) {
+  switch (action.type) {
+    case UPDATE_SELL_ORDER_TYPE_TYPE:
+      return { ...state, order_type: action.order_type };
+    case UPDATE_SELL_ORDER_PRICE_PRICE:
+      return { ...state, price: action.price };
     default:
       return state;
   }
@@ -46,8 +108,9 @@ function actionsReducer(state = {}, action) {
 
 const rootReducer = combineReducers({
   authentication,
-  messagesReducer,
-  actionsReducer
+  messages,
+  buy_order,
+  sell_order
 });
 
 export default rootReducer;

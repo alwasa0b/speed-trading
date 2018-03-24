@@ -1,15 +1,15 @@
 import React from "react";
-import { userConstants, actions, messages } from "./constants";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import SellAction from "./SellAction";
+import NumberParser from "./NumberParser";
+import * as orders from "./actions/sell.js";
 
 const gain = position =>
-  (
-    (position.cur_price - position.average_buy_price) /
-    position.average_buy_price
-  );
+  (position.cur_price - position.average_buy_price) /
+  position.average_buy_price;
 
-const Orders = ({ positions = [], sellOrder }) => {
+const Orders = ({ positions = [] }) => {
   return (
     <div className={"st-orders-section-wrapper"}>
       <div className={"st-section-title"}>Positions:</div>
@@ -25,11 +25,23 @@ const Orders = ({ positions = [], sellOrder }) => {
         {positions.map((position, i) => (
           <div className={"orders-row"} key={i}>
             <div className={"symbol-column"}>{position.symbol}</div>
-            <div className={"qty-column"}>{position.quantity}</div>
-            <div className={"price-column"}>{position.average_buy_price}</div>
-            <div className={"gain-column"}>{(gain(position) * 100).toFixed(3)}%</div>
+            <div className={"qty-column"}>
+              <NumberParser value={position.quantity} fix={0} />
+            </div>
+            <div className={"price-column"}>
+              <NumberParser value={position.average_buy_price} />
+            </div>
+            <div className={"gain-column"}>
+              <NumberParser value={gain(position) * 100} />
+            </div>
             <div className={"gain-dollar-column"}>
-              {(gain(position) * position.average_buy_price * position.quantity).toFixed(3)}
+              <NumberParser
+                value={
+                  gain(position) *
+                  position.average_buy_price *
+                  position.quantity
+                }
+              />
             </div>
             <div className={"st-action-column"}>
               <SellAction position={position} />
@@ -41,18 +53,10 @@ const Orders = ({ positions = [], sellOrder }) => {
   );
 };
 
-const mapStateToProps = ({ messagesReducer }) => {
+const mapStateToProps = ({ messages }) => {
   return {
-    positions: messagesReducer.positions
+    positions: messages.positions
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    sellOrder: position => {
-      dispatch({ type: actions.SELL_REQUEST, data: position });
-    }
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Orders);
+export default connect(mapStateToProps, null)(Orders);

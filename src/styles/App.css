@@ -182,11 +182,11 @@
 }
 
 .symbol-column-header {
-  width: 7%;
+  width: 13%;
 }
 
 .qty-column-header {
-  width: 15%;
+  width: 10%;
 }
 
 .price-column-header {
@@ -210,11 +210,11 @@
 }
 
 .qty-column {
-  width: 15%;
+  width: 10%;
 }
 
 .symbol-column {
-  width: 7%;
+  width: 13%;
 }
 
 .price-column {
@@ -305,16 +305,16 @@
   color: #ffffff;
   padding: 20px;
   background-color: #730863;
-  font-size: 2.5em;
+  font-size: 1.5em;
   font-family: "Roboto-thin", sans-serif;
   text-align: right;
-  width: 100%;
+  flex: 2;
 }
 
 .st-ticker-live {
   margin-top: 0.75em;
   padding: 20px;
-  flex: 0.5;
+  flex: 1;
 }
 
 .st-ticker-live input {

@@ -1,132 +1,99 @@
 import React, { PureComponent } from "react";
-import { userConstants, actions, messages } from "./constants";
+import { bindActionCreators } from "redux";
+import * as messages from "./actions/messages.js";
+import * as orders from "./actions/buy.js";
 import { connect } from "react-redux";
+import Ticker from "./Ticker";
+import AutoSellOrder from "./AutoSellOrder.js";
 
 class OrderActions extends PureComponent {
   componentDidMount() {
-    this.props.dispatch({ type: messages.UPDATE_POSITIONS });
-    this.props.dispatch({ type: messages.UPDATE_ORDERS });
+    this.props.update_positions();
+    this.props.update_orders();
   }
 
   state = { placeStopLoss: false, placeSellOrder: false, quantity: 0 };
+
   render() {
-    let { price = {}, buyOrder } = this.props;
+    let { price = {}, buy_order } = this.props;
 
     return (
       <div className={"order-action-wrapper"}>
+        <div className={"row"}>
+          <Ticker />
+        </div>
         <div className={"row"}>
           <div className={"st-label-div"}>Quantity:</div>
           <div className={"st-input-div"}>
             <input
               type="text"
               id="qty"
-              ref={node => (this.quantity = node)}
               className={"input-qty"}
               onChange={({ target }) =>
-                this.setState({ quantity: target.value })
+                this.props.update_quantity({ quantity: target.value })
               }
             />
           </div>
           <div className={"st-text-div"}>@</div>
           <div className={"st-label-div"}>Price:</div>
           <div className={"st-input-div"}>
-            <input
-              type="checkbox"
-              onChange={() =>
-                this.setState({
-                  customPrice: !this.state.customPrice
+            <select
+              value={this.props.buy_order_type}
+              onChange={({ target }) =>
+                this.props.update_buy_order_type({
+                  buy_order_type: target.value
                 })
               }
-            />
+            >
+              <option value="bid">Bid</option>
+              <option value="limit">Limit</option>
+            </select>
           </div>
           <div className={"st-input-div"}>
             <input
               type="text"
               id="price"
-              disabled={!this.state.customPrice}
+              disabled={this.props.buy_order_type != "limit"}
               className={"input-price"}
-              ref={node => (this.price = node)}
+              onChange={({ target }) =>
+                this.props.update_buy_price({
+                  buy_price: target.value
+                })
+              }
             />
           </div>
           <div className={"st-btn-div"}>
             <button
               className={"btn-buy"}
-              disabled={this.state.quantity < 1 || !price.price}
-              onClick={() =>
-                buyOrder({
-                  instrument: price.instrument,
-                  quantity: this.quantity.value,
-                  symbol: price.symbol,
-                  placeSellOrder: this.state.placeSellOrder,
-                  placeStopLoss: this.state.placeStopLoss,
-                  sellPrice: this.sellOrderPrice.value,
-                  stopLossPrice: this.stopLossPrice.value,
-                  customPrice: this.state.customPrice,
-                  bid_price: this.price.value
-                })
+              disabled={
+                this.props.quantity < 1 ||
+                (this.props.buy_order_type === "limit" &&
+                  !this.props.buy_price) ||
+                !price.price
               }
+              onClick={this.props.place_buy_order}
             >
               Buy
             </button>
-          </div>
+          </div>  
         </div>
         <div className={"row"}>
-          <div className={"st-label-div"}>Place StopLoss: </div>
-          <div className={"st-input-div"}>
-            <input
-              type="checkbox"
-              onChange={({ target }) =>
-                this.setState({
-                  placeStopLoss: !this.state.placeStopLoss
-                })
-              }
-            />
-          </div>
-          <div className={"st-input-div"}>
-            <input
-              type="text"
-              ref={node => (this.stopLossPrice = node)}
-              disabled={!this.state.placeStopLoss}
-            />
-          </div>
-
-          <div className={"st-label-div"}>Place Sell Order: </div>
-          <div className={"st-input-div"}>
-            <input
-              type="checkbox"
-              onChange={({ target }) =>
-                this.setState({
-                  placeSellOrder: !this.state.placeSellOrder
-                })
-              }
-            />
-          </div>
-          <div className={"st-input-div"}>
-            <input
-              type="text"
-              ref={node => (this.sellOrderPrice = node)}
-              disabled={!this.state.placeSellOrder}
-            />
-          </div>
+          <AutoSellOrder />
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ messagesReducer }) => {
+const mapStateToProps = ({ messages, buy_order }) => {
   return {
-    price: messagesReducer.price
+    price: messages.price,
+    ...buy_order
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    buyOrder: instrument => {
-      dispatch({ type: actions.BUY_REQUEST, data: instrument });
-    },
-    dispatch
-  };
-};
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ ...messages, ...orders }, dispatch);
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderActions);
