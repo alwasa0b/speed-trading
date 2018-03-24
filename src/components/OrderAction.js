@@ -1,18 +1,12 @@
 import React, { PureComponent } from "react";
-import { bindActionCreators } from "redux";
-import * as messages from "./actions/messages.js";
-import * as orders from "./actions/buy.js";
-import { connect } from "react-redux";
-import Ticker from "./Ticker";
-import AutoSellOrder from "./AutoSellOrder.js";
+import Ticker from "../containers/Ticker";
+import AutoSellOrder from "../containers/AutoSellOrder.js";
 
-class OrderActions extends PureComponent {
+export default class OrderActions extends PureComponent {
   componentDidMount() {
     this.props.update_positions();
     this.props.update_orders();
   }
-
-  state = { placeStopLoss: false, placeSellOrder: false, quantity: 0 };
 
   render() {
     let { price = {}, buy_order } = this.props;
@@ -75,7 +69,7 @@ class OrderActions extends PureComponent {
             >
               Buy
             </button>
-          </div>  
+          </div>
         </div>
         <div className={"row"}>
           <AutoSellOrder />
@@ -84,16 +78,3 @@ class OrderActions extends PureComponent {
     );
   }
 }
-
-const mapStateToProps = ({ messages, buy_order }) => {
-  return {
-    price: messages.price,
-    ...buy_order
-  };
-};
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ ...messages, ...orders }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(OrderActions);

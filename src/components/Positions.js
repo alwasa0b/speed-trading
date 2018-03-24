@@ -1,15 +1,12 @@
 import React from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import SellAction from "./SellAction";
 import NumberParser from "./NumberParser";
-import * as orders from "./actions/sell.js";
+import SellAction from "../containers/SellAction";
 
 const gain = position =>
   (position.cur_price - position.average_buy_price) /
   position.average_buy_price;
 
-const Orders = ({ positions = [] }) => {
+export default ({ positions = [] }) => {
   return (
     <div className={"st-orders-section-wrapper"}>
       <div className={"st-section-title"}>Positions:</div>
@@ -52,11 +49,3 @@ const Orders = ({ positions = [] }) => {
     </div>
   );
 };
-
-const mapStateToProps = ({ messages }) => {
-  return {
-    positions: messages.positions
-  };
-};
-
-export default connect(mapStateToProps, null)(Orders);

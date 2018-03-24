@@ -25,6 +25,9 @@ import {
   ORDERS_UPDATED,
   PRICE_UPDATED
 } from "./constants/messages";
+
+import { UPDATE_USERNAME, UPDATE_PASSWORD } from "./constants/login";
+
 import { combineReducers } from "redux";
 
 let user = JSON.parse(localStorage.getItem("user"));
@@ -106,11 +109,29 @@ function sell_order(
   }
 }
 
+function login(
+  state = {
+    username: "",
+    password: ""
+  },
+  action
+) {
+  switch (action.type) {
+    case UPDATE_USERNAME:
+      return { ...state, username: action.username };
+    case UPDATE_PASSWORD:
+      return { ...state, password: action.password };
+    default:
+      return state;
+  }
+}
+
 const rootReducer = combineReducers({
   authentication,
   messages,
   buy_order,
-  sell_order
+  sell_order,
+  login
 });
 
 export default rootReducer;
