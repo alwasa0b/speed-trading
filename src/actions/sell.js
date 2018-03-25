@@ -3,7 +3,7 @@ import {
   UPDATE_SELL_ORDER_TYPE_TYPE,
   UPDATE_SELL_ORDER_PRICE_PRICE
 } from "../constants/sell";
-import * as service from "../service";
+import * as service from "./service";
 
 const sell_order_success = () => ({ type: PLACE_SELL_REQUEST_SUCCESS });
 export const place_sell_order = ({ sell_order }) => async (

@@ -6,7 +6,7 @@ import {
   UPDATE_BUY_PRICE,
   UPDATE_SELL_PRICE
 } from "../constants/buy";
-import * as service from "../service";
+import * as service from "./service";
 
 const buy_order_success = () => ({ type: PLACE_BUY_REQUEST_SUCCESS });
 export const place_buy_order = () => async (dispatch, getState) => {

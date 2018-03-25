@@ -1,5 +1,5 @@
 import { PLACE_STOP_REQUEST_SUCCESS } from "../constants/stop";
-import * as service from "../service";
+import * as service from "./service";
 
 const stop_order_success = () => ({ type: PLACE_STOP_REQUEST_SUCCESS });
 export const place_stop_loss_order = ({ stop_order }) => async (

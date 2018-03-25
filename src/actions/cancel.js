@@ -1,5 +1,5 @@
 import { PLACE_CANCEL_REQUEST_SUCCESS } from "../constants/cancel";
-import * as service from "../service";
+import * as service from "./service";
 
 const cancel_order_success = () => ({ type: PLACE_CANCEL_REQUEST_SUCCESS });
 export const place_cancel_order = ({ cancel_order }) => async dispatch => {

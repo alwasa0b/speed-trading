@@ -4,7 +4,7 @@ import {
   UPDATE_USERNAME,
   UPDATE_PASSWORD
 } from "../constants/login";
-import * as service from "../service";
+import * as service from "./service";
 
 const login_success = () => ({ type: LOGIN_SUCCESS });
 const login_failed = () => ({ type: LOGIN_FAILURE });
