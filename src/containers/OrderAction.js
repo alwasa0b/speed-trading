@@ -3,15 +3,10 @@ import { bindActionCreators } from "redux";
 import * as orders from "../actions/buy.js";
 import { connect } from "react-redux";
 
-const mapStateToProps = ({ messages, buy_order }) => {
-  return {
+export default connect(
+  ({ messages, buy_order }) => ({
     price: messages.price,
     ...buy_order
-  };
-};
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(orders, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(OrderAction);
+  }),
+  dispatch => bindActionCreators(orders, dispatch)
+)(OrderAction);

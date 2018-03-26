@@ -1,10 +1,9 @@
 import App from "../components/App";
 import { connect } from "react-redux";
 
-const mapStateToProps = ({ authentication }) => {
-  return {
+export default connect(
+  ({ authentication }) => ({
     loggedIn: authentication.loggedIn
-  };
-};
-
-export default connect(mapStateToProps, null)(App);
+  }),
+  null
+)(App);

@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import Ticker from "../containers/Ticker";
 import AutoSellOrder from "../containers/AutoSellOrder.js";
 
